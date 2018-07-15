@@ -45,3 +45,9 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 - ```> az login```
 - ```> az webapp create --name "FantasyWealth" --resource-group "xxxxxxxxxxxxGroup" --plan "xxxxxxxxxxxxxPlan"```
 - ```> az webapp deployment user set --user-name "xxxxxuser" --password "xxxxxxxpassword"```
+- ```> az webapp deployment source config-local-git -n "FantasyWealth" -g "xxxxxxxxxxxxGroup" --query [url] -o tsv```
+##### The result of executing the last above command is git url that we use below in git remote add azure url command.
+- ```> git add . & git commit -m "comment"```
+##### Note before doing git add and commit the project must been initialized by git init
+- ```> git remote add azure "url"``` url is from above.
+- ```> git push azure master ``` will be asked for the password that you set above
