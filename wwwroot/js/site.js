@@ -1,5 +1,5 @@
 ﻿// Collapsing navbar after clicking a link
-$('.navbar-collapse a').click(function () {
+$('.navbar-collapse').click(function () {
   $(".navbar-collapse").collapse('hide');
 
 });
