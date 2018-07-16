@@ -1,14 +1,14 @@
 # Fantasy Wealth
 A Fantasy Online Stock Trading Web application for Buying and Selling Stocks, coded from scratch with C# ASP.NET Core 2.1 framework that is a cross-platform framework for building cloud-based, Internet-connected application. 
 
-Visit the app live at [here](https://fantasywealth.azureapp.net)
+Visit the app live at [here](https://fantasywealth.azurewebsites.net/)
 
 ## Step by Step and Helpful Tips for Development
 
 ### Prerequisites
-- .NET Core 2.1 SDK or later
-- Visual Studio Code
-- Azure CLI 2.0
+- [.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download/dotnet-core/2.1)
+- [Visual Studio Code](https://code.visualstudio.com/download)
+- [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 ### Creating the ASP.NET Core MVC web app by .NET Core CLI
 -	Create a folder in VS Code Command Prompt named FantasyWealth
@@ -21,15 +21,15 @@ Visit the app live at [here](https://fantasywealth.azureapp.net)
 ```
 -	Run below dotnet command from .NET Core CLI Tools to create a new ASP.NET Core C# MVC application project in the current directory 
    ``` 
-  FantasyWeelth> dotnet new mvc -au None -lang C# -f  netcoreapp2.1 
+  c:\FantasyWeelth> dotnet new mvc -au None -lang C# -f  netcoreapp2.1 
    ```
 ##### Note: - ```>dotnet new mvc``` also works because in ```dotnet new``` the default language is C#, default framework is the latest version installed on the machine unless specified and The type of authentication is None. When running the Scaffold identity into the application it adds login functionality to the application for adding custom user data to Identity and other modification.
 - To test the application project is created correctly run below command and browse  http://localhost:5000  or   https://localhost:5001
 ```
-FantasyWeelth> dotnet run
+c:\FantasyWeelth> dotnet run
 ```
-- Adding ```.gitignore, README.md``` files.
-##### Note:  Before adding User Identity for login and Entity Framework let's change layout.cshtml and  update Bootstrap and jQuery of the MVC template. Using Bower but deprecated.
+- Add ```.gitignore, README.md``` files to the project.
+##### Note:  Before adding User Identity for login and Entity Framework for storing data let's change layout.cshtml and  update Bootstrap and jQuery of the MVC template. Using Bower but deprecated.
 #### Manage client-side packages with Bower 
 - Adding ```bower.json and .bowerrc``` files to add "bootstrap" , "jquery" to the dependencies.
 - Run ```>bower install```
@@ -39,9 +39,23 @@ FantasyWeelth> dotnet run
 - adding ```font-awesome & popper.js``` by ```bower.json``` to run ```>bower install```.
 - adding the font-awesome CSS popper.js files to the environment Tag Helper for Development and Production in ```_Layout.cshtml``` file.
 - new looks by modifying _Layout.cshtml
+##### The bower.json looks like 
+```
+{
+    "name": "fantasywealth",
+    "private": true,
+    "dependencies": {
+      "bootstrap": "4.1.2",
+      "jquery" : "3.3.1",
+      "fontawesome": "5.1.0",
+      "popper.js":"1.14.3"
+    }
+}
+```
 
 ### Hosting the ASP.NET Core MVC web app on Azure
 Follow the below steps to push the application into Azure by  Azure CLI 2.0 & git
+#### Change xxxxxxxxxxxxGroup, xxxxxxxxxxxxxPlan, xxxxxuser, xxxxxxxpassword to your own info.
 - ```> az login```
 - ```> az webapp create --name "FantasyWealth" --resource-group "xxxxxxxxxxxxGroup" --plan "xxxxxxxxxxxxxPlan"```
 - ```> az webapp deployment user set --user-name "xxxxxuser" --password "xxxxxxxpassword"```
@@ -51,7 +65,7 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 ##### Note before doing git add and commit the project must been initialized by git init
 - ```> git remote add azure "url"``` url is from above.
 - ```> git push azure master ``` will be asked for the password that you set above
-### Entity Framework Core and Authentication
+# Entity Framework Core and Authentication
 1. Installing below packages:
 - ```> dotnet add package Microsoft.EntityFrameworkCore.SqlServer```
 - ```> dotnet add package Microsoft.EntityFrameworkCore.Tools```
@@ -67,7 +81,7 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 ##### Note: Because the list of semicolon separated files in this command ```> dotnet aspnet-codegenerator identity -u FantasyWealthUser --list-files Account.Register;Account.Manage.Index;Account.Manage._Layout ``` didn't work So Doing in seperated command by --force option to overwrite dbContext.
 
 - Finally run the following commands: 
-# !Important: In all include --userClass FantasyWealthUser with --force to overwrite
+#### !Important: In all include --userClass FantasyWealthUser with --force to overwrite
 ```
 > dotnet aspnet-codegenerator identity --userClass FantasyWealthUser --files  Account.Register
 ```
@@ -77,15 +91,19 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 ```
 > dotnet aspnet-codegenerator identity --userClass FantasyWealthUser --files  Account.Manage._Layout --dbContext FantasyWealthIdentityDbContext --force
 ```
-#####  Migrations, UseAuthentication, and layout
-# Note: Update ConnectionStrings generated by ```aspnet-codegenerator``` using SQL Server accordingly.
+###  Migrations, UseAuthentication, and layout
+##### Note: Update ConnectionStrings generated by ```aspnet-codegenerator``` using SQL Server accordingly.
 - Migrations provide a way to create the database and to apply schema changes to the database. So everytime any changes in models/tables needs Migration and update database following commands
 - ```> dotnet ef migrations add xxxxxxx``` The xxxxxxx is name parameter for the ```ef migration add``` command is arbitrary.
 #### To undo this Migration, use 'dotnet ef migrations remove' that Removes the last migration.
 - ```> dotnet ef database update```
 - Add ```app.UseAuthentication()``` in Startup.cs file to enable Authentication.
-- Add Login/Sign up to the layaout.cshtml file
-- Run the application to test and publish it into Azure.
+- Add Login/Sign up to the layaout.cshtml file.
+- Run the application to test and publish it into Azure. ```git push azure master```
+- Add and setup SQL Database in Azure for the application.
+
+
+[Live Demo](https://fantasywealth.azurewebsites.net/)
 
 
 
@@ -93,12 +111,11 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 
 
 
-```>dotnet aspnet-codegenerator identity --help```
-
+```
+>dotnet aspnet-codegenerator identity --help 
 
 Usage: aspnet-codegenerator [arguments] [options]
-
-Arguments:
+ Arguments:
   generator  Name of the generator. Check available generators below.
 
 Options:
@@ -120,9 +137,11 @@ Generator Options:
   --force|-f           : Use this option to overwrite existing files.
   --useDefaultUI|-udui : Use this option to setup identity and to use Default UI.
   --layout|-l          : Specify a custom layout file to use.
-  --generateLayout|-gl : Use this option to generate a new _Layout.cshtml
+  --generateLayout|-gl : Use this option to generate a new _Layout.cshtml 
+  ```
 
-```>dotnet aspnet-codegenerator identity --listFiles```
+```
+>dotnet aspnet-codegenerator identity --listFiles
 ##### File List:
 Account.AccessDenied
 Account.ConfirmEmail
@@ -152,3 +171,4 @@ Account.Manage.TwoFactorAuthentication
 Account.Register
 Account.ResetPassword
 Account.ResetPasswordConfirmation
+```
