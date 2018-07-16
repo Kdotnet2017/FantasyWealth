@@ -11,8 +11,7 @@
 .navbar-brand{
     font-family: 'Rouge Script', cursive; 
   }
-
-  .fakeimg {
-    height: 200px;
-    background: #aaa;
-}
+  .white .active a,
+  .white .active a:hover {
+      color:white;
+  }

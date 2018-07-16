@@ -19,14 +19,16 @@ namespace FantasyWealth.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
-            return View();
+           // return View();
+            return RedirectToAction("Index","Home");
         }
 
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View();
+           // return View();
+           return RedirectToAction("Index","Home");
         }
 
         public IActionResult Privacy()
