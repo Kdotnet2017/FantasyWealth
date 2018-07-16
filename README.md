@@ -104,6 +104,9 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 - Add and setup SQL Database in Azure for the application.
 
 # Creating Models and .......
+- First update User Table to add First Name & Last Name.
+- Update Register.cs 
+- Run ```dotnet ef migrations add AddingUserData``` and ```dotnet ef database update```
 
 ## [Visit the app live](https://fantasywealth.azurewebsites.net/)
 

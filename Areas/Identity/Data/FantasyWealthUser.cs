@@ -9,5 +9,7 @@ namespace FantasyWealth.Areas.Identity.Data
     // Add profile data for application users by adding properties to the FantasyWealthUser class
     public class FantasyWealthUser : IdentityUser
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
