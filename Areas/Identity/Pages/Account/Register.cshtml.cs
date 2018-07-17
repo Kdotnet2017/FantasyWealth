@@ -51,6 +51,11 @@ namespace FantasyWealth.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
+            [Display(Name = "Registration Date")]
+            [DataType(DataType.DateTime)]
+            public DateTime RegistrationDate { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -78,7 +83,7 @@ namespace FantasyWealth.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
 
-                var user = new FantasyWealthUser { UserName = Input.Email, Email = Input.Email, FirstName=Input.FirstName,LastName=Input.LastName };
+                var user = new FantasyWealthUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName,RegistrationDate=DateTime.Now };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

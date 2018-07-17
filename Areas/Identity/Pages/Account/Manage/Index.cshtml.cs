@@ -51,6 +51,11 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
             public string LastName { get; set; }
 
             [Required]
+            [Display(Name = "Registration Date")]
+            [DataType(DataType.DateTime)]
+            public DateTime RegistrationDate { get; set; }
+
+            [Required]
             [EmailAddress]
             public string Email { get; set; }
 
@@ -77,6 +82,7 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                RegistrationDate=user.RegistrationDate,
                 Email = email,
                 PhoneNumber = phoneNumber
             };
@@ -107,6 +113,10 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
             {
                 user.LastName = Input.LastName;
             }
+            if(Input.RegistrationDate!=user.RegistrationDate)
+            {
+                user.RegistrationDate=Input.RegistrationDate;
+            }
             var email = await _userManager.GetEmailAsync(user);
             if (Input.Email != email)
             {
@@ -128,7 +138,7 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
-             await _userManager.UpdateAsync(user);
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
