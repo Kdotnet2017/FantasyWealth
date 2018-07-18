@@ -5,32 +5,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FantasyWealth.Models;
+using FantasyWealth.Utilities;
 
 namespace FantasyWealth.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(string SearchSymbol)
         {
             return View();
         }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-           // return View();
-            return RedirectToAction("Index","Home");
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-           // return View();
-           return RedirectToAction("Index","Home");
-        }
-
         public IActionResult Privacy()
         {
             return View();

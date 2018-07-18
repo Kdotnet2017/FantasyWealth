@@ -1,3 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+@using FantasyWealth.Areas.Identity.Data
+@inject SignInManager<FantasyWealthUser> SignInManager
+@inject UserManager<FantasyWealthUser> UserManager
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +23,7 @@
               asp-fallback-href="~/lib/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
     </environment>
-
+ 
 </head>
 <body>
 
@@ -30,9 +34,17 @@
   </button>
   <div class="collapse navbar-collapse" id="idCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-     <!-- <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-      <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>-->
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Trade</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Transaction</a></li>
+             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Schedule</a></li>
+        }
+        else
+        {
+             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        }
     </ul>
     
         
@@ -46,12 +58,14 @@
 
  <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content text-center">
+    <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <div class=" container text-center">
+        <footer class="">
             <p>&copy; 2018 - Fantasy Wealth <i class="fas fa-2x fa-hand-holding-usd" style="color: blue;"></i></p>
         </footer>
+        </div>
     </div>
 
 
