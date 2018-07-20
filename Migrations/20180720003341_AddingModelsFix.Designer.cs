@@ -4,14 +4,16 @@ using FantasyWealth.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FantasyWealth.Migrations
 {
     [DbContext(typeof(FantasyWealthIdentityDbContext))]
-    partial class FantasyWealthIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180720003341_AddingModelsFix")]
+    partial class AddingModelsFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,13 +39,9 @@ namespace FantasyWealth.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(150);
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(150);
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -124,7 +122,6 @@ namespace FantasyWealth.Migrations
                     b.Property<int>("Status");
 
                     b.Property<string>("TickerSymbol")
-                        .IsRequired()
                         .HasMaxLength(15);
 
                     b.Property<DateTime>("TimeStamp");
@@ -132,7 +129,6 @@ namespace FantasyWealth.Migrations
                     b.Property<int>("TradeType");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasMaxLength(450);
 
                     b.HasKey("Id");
@@ -168,7 +164,6 @@ namespace FantasyWealth.Migrations
                     b.Property<int>("TransactionType");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasMaxLength(450);
 
                     b.HasKey("Id");
@@ -193,13 +188,11 @@ namespace FantasyWealth.Migrations
                     b.Property<int>("Quantity");
 
                     b.Property<string>("TickerSymbol")
-                        .IsRequired()
                         .HasMaxLength(15);
 
                     b.Property<DateTime>("UpdatedDate");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasMaxLength(450);
 
                     b.HasKey("Id");
@@ -327,8 +320,7 @@ namespace FantasyWealth.Migrations
                 {
                     b.HasOne("FantasyWealth.Areas.Identity.Data.FantasyWealthUser", "User")
                         .WithMany("Trades")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("FantasyWealth.Models.Transaction", b =>
@@ -339,16 +331,14 @@ namespace FantasyWealth.Migrations
 
                     b.HasOne("FantasyWealth.Areas.Identity.Data.FantasyWealthUser", "User")
                         .WithMany("Transactions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("FantasyWealth.Models.Wealth", b =>
                 {
                     b.HasOne("FantasyWealth.Areas.Identity.Data.FantasyWealthUser", "User")
                         .WithMany("Wealths")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

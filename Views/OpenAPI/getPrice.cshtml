@@ -1,2 +1,3 @@
+@using System;
 @if((string)@ViewData["Price"]!=""){
-<h6>Price:$ @ViewData["Price"]</h6>}
+<h5 class="text-warning">@DateTime.Now.ToShortDateString() Price :<strong class="text-danger"> $ @ViewData["Price"]</strong></h5>}

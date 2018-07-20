@@ -26,4 +26,12 @@ $("#btnSymbol").on("click", function (event) {
             $("#symbolChartDiv").html(res);
         }
     });
+    $.ajax({
+        url: "OpenAPI/getInfo/?SearchSymbol=" + $("#SearchSymbol").val(),
+        type: "GET",
+        success: function (res) {
+            $("#symbolInfoDiv").html(res);
+        }
+    });
+
 });

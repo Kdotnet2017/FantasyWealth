@@ -12,7 +12,7 @@
 
     function LoadData() {
         $.ajax({
-            url: "OpenAPI/getData/?SearchSymbol=" + $("#SearchSymbol").val(),
+            url: "OpenAPI/getChartDataAsJson/?SearchSymbol=" + $("#SearchSymbol").val(),
             dataType: "json",
             type: "GET",
             error: function(xhr, status, error) {

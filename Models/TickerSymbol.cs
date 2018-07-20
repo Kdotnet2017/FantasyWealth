@@ -8,15 +8,11 @@ namespace FantasyWealth.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [StringLength(10)]
+        [StringLength(15)]
         public string Symbol { get; set; }
         public string Name { get; set; }
         public bool isEnabled { get; set; }
-        public string Sector { get; set; }
-        public int ExchangeTrader { get; set; }
-        public DateTime Date { get; set; }
-    }
-    public enum ExchangeEnum{
-
+        public DateTime CreationDate { get; set; }
+        public DateTime UpdatedDate{get;set;}
     }
 }

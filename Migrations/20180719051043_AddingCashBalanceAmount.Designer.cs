@@ -4,14 +4,16 @@ using FantasyWealth.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FantasyWealth.Migrations
 {
     [DbContext(typeof(FantasyWealthIdentityDbContext))]
-    partial class FantasyWealthIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180719051043_AddingCashBalanceAmount")]
+    partial class AddingCashBalanceAmount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,13 +39,9 @@ namespace FantasyWealth.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(150);
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(150);
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -81,132 +79,6 @@ namespace FantasyWealth.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("FantasyWealth.Models.TickerSymbol", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationDate");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Symbol")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.Property<bool>("isEnabled");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TickerSymbols");
-                });
-
-            modelBuilder.Entity("FantasyWealth.Models.Trade", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<string>("Reserved");
-
-                    b.Property<int>("Status");
-
-                    b.Property<string>("TickerSymbol")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.Property<DateTime>("TimeStamp");
-
-                    b.Property<int>("TradeType");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Trades");
-                });
-
-            modelBuilder.Entity("FantasyWealth.Models.Transaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<string>("FromAccount")
-                        .HasMaxLength(450);
-
-                    b.Property<bool>("Reconciled");
-
-                    b.Property<DateTime>("TimeStamp");
-
-                    b.Property<string>("ToAccount")
-                        .HasMaxLength(450);
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("TradeId");
-
-                    b.Property<int>("TransactionType");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TradeId")
-                        .IsUnique()
-                        .HasFilter("[TradeId] IS NOT NULL");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Transactionrs");
-                });
-
-            modelBuilder.Entity("FantasyWealth.Models.Wealth", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreattionDate");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<string>("TickerSymbol")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Wealths");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -321,34 +193,6 @@ namespace FantasyWealth.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("FantasyWealth.Models.Trade", b =>
-                {
-                    b.HasOne("FantasyWealth.Areas.Identity.Data.FantasyWealthUser", "User")
-                        .WithMany("Trades")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FantasyWealth.Models.Transaction", b =>
-                {
-                    b.HasOne("FantasyWealth.Models.Trade", "Trade")
-                        .WithOne("Transaction")
-                        .HasForeignKey("FantasyWealth.Models.Transaction", "TradeId");
-
-                    b.HasOne("FantasyWealth.Areas.Identity.Data.FantasyWealthUser", "User")
-                        .WithMany("Transactions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FantasyWealth.Models.Wealth", b =>
-                {
-                    b.HasOne("FantasyWealth.Areas.Identity.Data.FantasyWealthUser", "User")
-                        .WithMany("Wealths")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

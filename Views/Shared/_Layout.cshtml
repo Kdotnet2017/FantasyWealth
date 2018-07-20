@@ -28,7 +28,7 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-  <a class="navbar-brand" asp-controller="Home" asp-action="Index">Fantasy Wealth<i class="fas  fa-hand-holding-usd" style="color: blue;"></i></a>
+  <a class="navbar-brand">Fantasy Wealth<i class="fas  fa-hand-holding-usd" style="color: blue;"></i></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#idCollapse">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -36,10 +36,10 @@
     <ul class="navbar-nav mr-auto">
         @if (SignInManager.IsSignedIn(User))
         {
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Trade</a></li>
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Transaction</a></li>
-             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Schedule</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Trade" asp-action="Index">Trade</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Transaction" asp-action="Index">Transaction</a></li>
+             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Schedule" asp-action="Index">Schedule</a></li>
         }
         else
         {
@@ -47,6 +47,23 @@
         }
     </ul>
     
+
+@if(SignInManager.IsSignedIn(User))
+{
+    <form  asp-controller="Trade" asp-action="Index" method="get">
+    <div class="form-group">
+        <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" placeholder="GOOGL"  id="SearchSymbol" name="SearchSymbol">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" id="btnSymbol">Get Price</button>
+            </div>
+       </div>
+    </div>
+    </form>
+}
+
+
+
         
     <partial name="_LoginPartial" />
    
@@ -58,6 +75,7 @@
 
  <partial name="_CookieConsentPartial" />
 
+   
     <div class="container body-content">
         @RenderBody()
         <hr />

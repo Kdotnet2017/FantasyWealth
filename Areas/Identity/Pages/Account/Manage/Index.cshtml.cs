@@ -42,11 +42,13 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Text)]
+            [StringLength(150, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
             [Display(Name = "First name")]
             public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
+            [StringLength(150, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
             [Display(Name = "Last name")]
             public string LastName { get; set; }
 
@@ -54,6 +56,11 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Registration Date")]
             [DataType(DataType.DateTime)]
             public DateTime RegistrationDate { get; set; }
+
+            [Required]
+            [Display(Name = "Balance Amount")]
+            [DataType(DataType.Currency)]
+            public decimal CashBalanceAmount { get; set; }
 
             [Required]
             [EmailAddress]
@@ -82,7 +89,8 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                RegistrationDate=user.RegistrationDate,
+                RegistrationDate = user.RegistrationDate,
+                CashBalanceAmount = user.CashBalanceAmount,
                 Email = email,
                 PhoneNumber = phoneNumber
             };
@@ -113,9 +121,13 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
             {
                 user.LastName = Input.LastName;
             }
-            if(Input.RegistrationDate!=user.RegistrationDate)
+            if (Input.RegistrationDate != user.RegistrationDate)
             {
-                user.RegistrationDate=Input.RegistrationDate;
+                user.RegistrationDate = Input.RegistrationDate;
+            }
+            if (Input.CashBalanceAmount != user.CashBalanceAmount)
+            {
+                user.CashBalanceAmount = Input.CashBalanceAmount;
             }
             var email = await _userManager.GetEmailAsync(user);
             if (Input.Email != email)
@@ -138,7 +150,7 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
-            await _userManager.UpdateAsync(user);
+            await _userManager.UpdateAsync(user); //updating new custom user data
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

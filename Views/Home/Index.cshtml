@@ -4,15 +4,19 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <div class="container text-center">
-<h4>Get the price:</h4>
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
 <form  asp-controller="Home" asp-action="Index" method="get">
     <div  class="text-danger" id="txtError"></div>
     <div class="form-group">
-       Symbol: <input id="SearchSymbol" class="form-control" type="text" name="SearchSymbol" placeholder="GOOGL">
-        <button id="btnSymbol" type="submit" class="btn btn-primary" >Get Price</button>
+        <label for="SearchSymbol">Price Lookup: Enter a Ticker Symbol</label>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="GOOGL"  id="SearchSymbol" name="SearchSymbol">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="button" id="btnSymbol">Get Price</button>
+  </div>
+</div>
     </div>
 </form>
   </div>
@@ -20,6 +24,7 @@
     </div>
     <div class="row">
         <div class="col">
+<div id="symbolInfoDiv"></div>
 <div id="priceDiv"></div>
 <div id="symbolChartDiv"></div>
 </div>
@@ -31,10 +36,9 @@
   <h2 class="display-4">Why Trade with Us?</h2>
   
   <div class="lead ">
-      <li class="">Commission free trades</li>
-      <li class="">24/7 real time price</li>
-      <li class="">3 month chart Price History</li>
-      <li class="">New accounts will get $10,000</li>
+      <li class="">No Fees! Commission Free Trades</li>
+      <li class="">3 month chart Price History for Technical Analysis</li>
+      <li class="">We will fund a new account for $10,000.00</li>
       <li class="">It's Fantasy Money!</li>
   </div>
   <hr class="my-4">

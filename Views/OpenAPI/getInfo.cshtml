@@ -1,0 +1,36 @@
+@model FantasyWealth.Models.CompanyVM
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.symbol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.companyName)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.issueType)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.sector)
+            </th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.symbol)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.companyName)
+            </td>
+             <td>
+                @Html.DisplayFor(model => model.issueType)
+            </td>
+             <td>
+                @Html.DisplayFor(model => model.sector)
+            </td>
+            </tr>
+    </tbody>
+</table>

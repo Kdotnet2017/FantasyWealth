@@ -19,12 +19,29 @@ namespace FantasyWealth.Controllers
         {
             return PartialView("getChart");
         }
-      
-        public JsonResult getData(string SearchSymbol)
+       public IActionResult getInfo(string SearchSymbol)
+       {
+           CompanyVM coVM=new CompanyVM();
+           coVM=getCompanyInfoAsVM(SearchSymbol);
+           return PartialView("getInfo",coVM);
+       }
+        public JsonResult getChartDataAsJson(string SearchSymbol)
         {
             List<ChartVM> lChart = new List<ChartVM>();
             lChart = iexTrading.getSymbolChart(SearchSymbol);
             return Json(lChart);
+        }
+        public JsonResult getCompanyInfoAsJson(string SearchSymbol)
+        {
+            CompanyVM companyInfo=new CompanyVM();
+            companyInfo=iexTrading.getSymbolCompany(SearchSymbol);
+            return Json(companyInfo);
+        }
+        public CompanyVM getCompanyInfoAsVM(string SearchSymbol)
+        {
+            CompanyVM companyInfo=new CompanyVM();
+            companyInfo=iexTrading.getSymbolCompany(SearchSymbol);
+            return companyInfo;
         }
     }
 }

@@ -42,11 +42,13 @@ namespace FantasyWealth.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
+            [StringLength(150, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
             [Display(Name = "First name")]
             public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
+            [StringLength(150, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
             [Display(Name = "Last name")]
             public string LastName { get; set; }
 
@@ -83,7 +85,7 @@ namespace FantasyWealth.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
 
-                var user = new FantasyWealthUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName,RegistrationDate=DateTime.Now };
+                var user = new FantasyWealthUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName,RegistrationDate=DateTime.Now,CashBalanceAmount=10000 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

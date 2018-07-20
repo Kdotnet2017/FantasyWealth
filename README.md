@@ -104,9 +104,23 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 - Add and setup SQL Database in Azure for the application.
 
 # Creating Models and .......
+- FantasyWealth Database at the beginning would be simple. ![SQL Schema](./wwwroot/images/sqlschema.jpg)
+- Creating TickerSymbol.cs, Trade.cs, Transaction.cs, Wealth.cs. and EnumCollections.cs. We will also create  ViewModels.
+- Update FantasyWealthIdentityDbContext.cs to add DbSet and decimal Data Type.
+- Run ```dotnet ef migrations add AddingModels``` and ```dotnet ef database update```  
 - First update User Table to add First Name & Last Name.
 - Update Register.cs 
 - Run ```dotnet ef migrations add AddingUserData``` and ```dotnet ef database update```
+1. Edited return url in Login.cshtml.cs file. changed to ~/Dashboard/Index.
+2. Modified _Layout to add Search box and Authorized user Menu options.
+3. Add a CashBalanceAmount as custome user date to User data model to store cash balance amount. At creating a new account the user will get $10,000.00 Cash. Modified files are: FantasyWealthUser.cs, Account/Manage/Index.cshtml.cs, Account/Manage/Index.cshtml, and Account/Register.cshtml.cs that we apply $10,000.00.
+#### !Important: DataType is [DataType(DataType.Currency)] also add the decimal type precision (decimal(18,2)) in DbContext file to override OnModelCreating as below 
+```
+builder.Entity<FantasyWealthUser>().Property(FantasyWealthUser => FantasyWealthUser.CashBalanceAmount)
+            .HasColumnType("decimal(18,2)");
+```
+- Don't forget to run ```dotnet ef migrations add AddingCashBalanceAmount``` and ```dotnet ef database update```
+- When push to Azure, login to Azure account and run the ```dotnet ef database update``` in Azure Console.
 
 ## [Visit the app live](https://fantasywealth.azurewebsites.net/)
 
