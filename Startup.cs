@@ -89,7 +89,7 @@ namespace FantasyWealth
 
 
             // Uncomment to Create a Role and Assign User for the Role once After creating admin user account.
-             CreateUserRoles(services).Wait();
+              CreateUserRoles(services).Wait();
         }
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
