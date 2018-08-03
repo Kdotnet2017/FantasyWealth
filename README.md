@@ -107,7 +107,7 @@ Follow the below steps to push the application into Azure by  Azure CLI 2.0 & gi
 - Add and setup SQL Database in Azure for the application.
 ![Home page Demo](./wwwroot/images/SearchSymbol.jpg)
 # Creating Models and .......
-- FantasyWealth Database at the beginning would be simple. ![SQL Schema](./wwwroot/images/sqlschema.jpg)
+- FantasyWealth Database at the beginning would be simple. ![SQL Schema](./wwwroot/images/SqlSchema.jpg)
 - Creating TickerSymbol.cs, Trade.cs, Transaction.cs, Wealth.cs. and EnumCollections.cs. We will also create  ViewModels.
 - Update FantasyWealthIdentityDbContext.cs to add DbSet and decimal Data Type.
 - Run ```dotnet ef migrations add AddingModels``` and ```dotnet ef database update```  

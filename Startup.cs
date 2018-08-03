@@ -41,7 +41,7 @@ namespace FantasyWealth
 
             // Adding Identity Service
             //Uncomment option to set simple password such as password
-            services.AddIdentity<FantasyWealthUser, IdentityRole>( /*options =>
+            services.AddIdentity<FantasyWealthUser, IdentityRole>( options =>
                  {
                      // Password settings
                      options.Password.RequireDigit = false;
@@ -50,7 +50,7 @@ namespace FantasyWealth
                      options.Password.RequireLowercase = true;
                      options.Password.RequireNonAlphanumeric = false;
                      options.Password.RequireUppercase = false;
-                 }*/ )
+                 } )
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<FantasyWealthIdentityDbContext>();
@@ -89,7 +89,7 @@ namespace FantasyWealth
 
 
             // Uncomment to Create a Role and Assign User for the Role once After creating admin user account.
-              CreateUserRoles(services).Wait();
+            //  CreateUserRoles(services).Wait();
         }
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
