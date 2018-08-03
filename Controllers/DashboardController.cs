@@ -26,7 +26,7 @@ namespace FantasyWealth.Controllers
             string userId = _userManager.GetUserId(HttpContext.User);
             var wealthDbContext = _context.Wealths.Include(w => w.Symbol).Include(w => w.User)
              .Where(t => t.UserId == userId).OrderByDescending(w => w.UpdatedDate);
-            var TransactionsDbContext = _context.Transactionrs.Include(t => t.Trade).Include(t => t.User)
+            var TransactionsDbContext = _context.Transactions.Include(t => t.Trade).Include(t => t.User)
             .Where(t => t.UserId == userId).OrderBy(t => t.CreationDate).Take(5).OrderByDescending(t => t.CreationDate);
             var TradeDbContext = _context.Trades.Include(t => t.Symbol).Include(t => t.User)
             .Where(t => t.UserId == userId).Take(5).OrderByDescending(t => t.CreationDate);

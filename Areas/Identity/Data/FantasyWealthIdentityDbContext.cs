@@ -17,7 +17,7 @@ namespace FantasyWealth.Areas.Identity.Data
         {
         }
         public DbSet<Wealth> Wealths { get; set; }
-        public DbSet<Transaction> Transactionrs { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Trade> Trades { get; set; }
         public DbSet<TickerSymbol> TickerSymbols { get; set; }
 

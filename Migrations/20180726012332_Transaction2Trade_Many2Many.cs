@@ -7,44 +7,44 @@ namespace FantasyWealth.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_Transactionrs_TradeId",
-                table: "Transactionrs");
+                name: "IX_Transactions_TradeId",
+                table: "Transactions");
 
             migrationBuilder.DropColumn(
                 name: "TransType",
-                table: "Transactionrs");
+                table: "Transactions");
 
             migrationBuilder.AddColumn<int>(
                 name: "TransactionType",
-                table: "Transactionrs",
+                table: "Transactions",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactionrs_TradeId",
-                table: "Transactionrs",
+                name: "IX_Transactions_TradeId",
+                table: "Transactions",
                 column: "TradeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_Transactionrs_TradeId",
-                table: "Transactionrs");
+                name: "IX_Transactions_TradeId",
+                table: "Transactions");
 
             migrationBuilder.DropColumn(
                 name: "TransactionType",
-                table: "Transactionrs");
+                table: "Transactions");
 
             migrationBuilder.AddColumn<int>(
                 name: "TransType",
-                table: "Transactionrs",
+                table: "Transactions",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactionrs_TradeId",
-                table: "Transactionrs",
+                name: "IX_Transactions_TradeId",
+                table: "Transactions",
                 column: "TradeId",
                 unique: true,
                 filter: "[TradeId] IS NOT NULL");

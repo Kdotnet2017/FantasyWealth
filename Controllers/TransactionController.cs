@@ -29,7 +29,7 @@ namespace FantasyWealth.Controllers
         public async Task<IActionResult> Index()
         {
             string userId = _userManager.GetUserId(HttpContext.User);
-            var TransactionsDbContext = _context.Transactionrs.Include(t => t.Trade).Include(t => t.User)
+            var TransactionsDbContext = _context.Transactions.Include(t => t.Trade).Include(t => t.User)
             .Where(t => t.UserId == userId).OrderBy(t => t.CreationDate);
             return View(await TransactionsDbContext.ToListAsync());
         }
@@ -76,7 +76,7 @@ namespace FantasyWealth.Controllers
             }
 
             string userId = _userManager.GetUserId(HttpContext.User);
-            var transaction = await _context.Transactionrs
+            var transaction = await _context.Transactions
                 .Include(t => t.Trade)
                 .Include(t => t.User)
                 .Where(u => u.UserId == userId)

@@ -179,7 +179,7 @@ namespace FantasyWealth.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Transactionrs");
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("FantasyWealth.Models.Wealth", b =>

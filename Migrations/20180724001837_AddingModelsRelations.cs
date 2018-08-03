@@ -12,7 +12,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.DropColumn(
                 name: "TransactionType",
-                table: "Transactionrs");
+                table: "Transactions");
 
             migrationBuilder.DropColumn(
                 name: "TickerSymbol",
@@ -31,7 +31,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.AddColumn<int>(
                 name: "TransType",
-                table: "Transactionrs",
+                table: "Transactions",
                 nullable: false,
                 defaultValue: 0);
 
@@ -127,7 +127,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.DropColumn(
                 name: "TransType",
-                table: "Transactionrs");
+                table: "Transactions");
 
             migrationBuilder.DropColumn(
                 name: "Action",
@@ -146,7 +146,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.AddColumn<int>(
                 name: "TransactionType",
-                table: "Transactionrs",
+                table: "Transactions",
                 nullable: false,
                 defaultValue: 0);
 

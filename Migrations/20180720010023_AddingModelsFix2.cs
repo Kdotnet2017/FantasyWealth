@@ -11,8 +11,8 @@ namespace FantasyWealth.Migrations
                 table: "Trades");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Transactionrs_AspNetUsers_UserId",
-                table: "Transactionrs");
+                name: "FK_Transactions_AspNetUsers_UserId",
+                table: "Transactions");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Wealths_AspNetUsers_UserId",
@@ -38,7 +38,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
-                table: "Transactionrs",
+                table: "Transactions",
                 maxLength: 450,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -88,8 +88,8 @@ namespace FantasyWealth.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Transactionrs_AspNetUsers_UserId",
-                table: "Transactionrs",
+                name: "FK_Transactions_AspNetUsers_UserId",
+                table: "Transactions",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
@@ -111,8 +111,8 @@ namespace FantasyWealth.Migrations
                 table: "Trades");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Transactionrs_AspNetUsers_UserId",
-                table: "Transactionrs");
+                name: "FK_Transactions_AspNetUsers_UserId",
+                table: "Transactions");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Wealths_AspNetUsers_UserId",
@@ -136,7 +136,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
-                table: "Transactionrs",
+                table: "Transactions",
                 maxLength: 450,
                 nullable: true,
                 oldClrType: typeof(string),
@@ -181,8 +181,8 @@ namespace FantasyWealth.Migrations
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Transactionrs_AspNetUsers_UserId",
-                table: "Transactionrs",
+                name: "FK_Transactions_AspNetUsers_UserId",
+                table: "Transactions",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",

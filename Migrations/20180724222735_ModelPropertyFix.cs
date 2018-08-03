@@ -8,7 +8,7 @@ namespace FantasyWealth.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "TimeStamp",
-                table: "Transactionrs",
+                table: "Transactions",
                 newName: "CreationDate");
 
             migrationBuilder.RenameColumn(
@@ -18,7 +18,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "ToAccount",
-                table: "Transactionrs",
+                table: "Transactions",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldMaxLength: 450,
@@ -26,7 +26,7 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "FromAccount",
-                table: "Transactionrs",
+                table: "Transactions",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldMaxLength: 450,
@@ -37,7 +37,7 @@ namespace FantasyWealth.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "CreationDate",
-                table: "Transactionrs",
+                table: "Transactions",
                 newName: "TimeStamp");
 
             migrationBuilder.RenameColumn(
@@ -47,14 +47,14 @@ namespace FantasyWealth.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "ToAccount",
-                table: "Transactionrs",
+                table: "Transactions",
                 maxLength: 450,
                 nullable: true,
                 oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<string>(
                 name: "FromAccount",
-                table: "Transactionrs",
+                table: "Transactions",
                 maxLength: 450,
                 nullable: true,
                 oldClrType: typeof(int));

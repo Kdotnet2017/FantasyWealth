@@ -76,7 +76,7 @@ namespace FantasyWealth.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transactionrs",
+                name: "Transactions",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -93,15 +93,15 @@ namespace FantasyWealth.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transactionrs", x => x.Id);
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transactionrs_Trades_TradeId",
+                        name: "FK_Transactions_Trades_TradeId",
                         column: x => x.TradeId,
                         principalTable: "Trades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Transactionrs_AspNetUsers_UserId",
+                        name: "FK_Transactions_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -114,15 +114,15 @@ namespace FantasyWealth.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactionrs_TradeId",
-                table: "Transactionrs",
+                name: "IX_Transactions_TradeId",
+                table: "Transactions",
                 column: "TradeId",
                 unique: true,
                 filter: "[TradeId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactionrs_UserId",
-                table: "Transactionrs",
+                name: "IX_Transactions_UserId",
+                table: "Transactions",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -137,7 +137,7 @@ namespace FantasyWealth.Migrations
                 name: "TickerSymbols");
 
             migrationBuilder.DropTable(
-                name: "Transactionrs");
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "Wealths");
