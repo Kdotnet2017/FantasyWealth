@@ -20,6 +20,8 @@
                 </p>
                 <div class="ml-auto">
                      <a asp-controller="Home" asp-action="Privacy" class="btn btn-info nav-item">Learn More</a>
+                     </div>
+                      <div class="ml-auto">
                     <button type="button" class="btn btn-secondary nav-item" data-cookie-string="@cookieString">Accept</button>
                 </div>
            </div>
@@ -28,8 +30,9 @@
     <script>
         (function () {
             document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
+                el.preventDefault();
                 document.cookie = el.target.dataset.cookieString;
-                document.querySelector("#cookieConsent").classList.add("hidden");
+                document.querySelector("#cookieConsent").classList.add("d-none");
             }, false);
         })();
     </script>

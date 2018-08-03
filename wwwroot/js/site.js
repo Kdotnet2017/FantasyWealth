@@ -242,3 +242,11 @@ $(document).ready(function () {
         }
     });
 });
+
+
+    $(document).ready(function () {
+        $("#btnCookieString").on("click",function(el){
+                document.cookie = el.target.dataset.cookieString;
+                document.querySelector("#cookieConsent").classList.add("hidden");
+            }, false);
+    });
