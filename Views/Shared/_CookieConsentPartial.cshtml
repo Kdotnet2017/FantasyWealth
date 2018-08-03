@@ -8,28 +8,23 @@
 
 @if (showBanner)
 {
-    <nav id="cookieConsent" class="navbar navbar-default navbar-fixed-top" role="alert">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cookieConsent .navbar-collapse">
-                    <span class="sr-only">Toggle cookie consent banner</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <span class="navbar-brand"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></span>
-            </div>
+    <nav id="cookieConsent" class="navbar navbar-light bg-light fixed-bottom navbar-expand-md" role="alert">
+    <div class="container">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#cookieConsent .navbar-collapse"> 
+            <span class="sr-only">Toggle cookie consent banner</span>&#x2630;
+        </button>
+        <span class="navbar-brand"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></span>
             <div class="collapse navbar-collapse">
                 <p class="navbar-text">
-                   This website utilizes cookies and similar technologies for functionality and other purposes. Your use of this website constitutes your acceptance of cookies. To learn more about our cookies and the choices we offer, please see the link to our Cookie Policy.
+                    This website utilizes cookies and similar technologies for functionality and other purposes. Your use of this website constitutes your acceptance of cookies. To learn more about our cookies and the choices we offer, please see the link to our Cookie Policy.
                 </p>
-                <div class="navbar-right">
-                    <a asp-controller="Home" asp-action="Privacy" class="btn btn-info navbar-btn">Learn More</a>
-                    <button type="button" class="btn btn-default navbar-btn" data-cookie-string="@cookieString">Accept</button>
+                <div class="ml-auto">
+                     <a asp-controller="Home" asp-action="Privacy" class="btn btn-info nav-item">Learn More</a>
+                    <button type="button" class="btn btn-secondary nav-item" data-cookie-string="@cookieString">Accept</button>
                 </div>
-            </div>
-        </div>
-    </nav>
+           </div>
+    </div>
+</nav>
     <script>
         (function () {
             document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
