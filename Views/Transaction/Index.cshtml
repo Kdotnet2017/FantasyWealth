@@ -1,1 +1,106 @@
-<h3>Welcome to Transaction:</h3>
+@model IEnumerable<FantasyWealth.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Transactions";
+}
+
+<div>@ViewData["error"]</div>
+<p>
+    <a asp-action="Create" class="btn btn-outline-info btn-lg">New Transaction</a>
+</p>
+<div class="text-center">
+    <div class="row">
+        <div class="col">
+            <div id="transactionDiv">
+                <span class="d-block p-2 bg-primary text-white"><strong>Transaction:</strong></span>
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Trade#</th>
+                            <th scope="col">$Amount</th>
+
+                            <th scope="col">Reconciled</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            decimal balance = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <a asp-controller="Transaction" asp-action="Details" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Id) </a>
+                                </td>
+                                <td>
+                                    @{
+                                        string shortCreationDate = item.CreationDate.ToShortDateString();
+                                    }
+                                    @Html.DisplayFor(modelItem => shortCreationDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TransactionType)
+                                </td>
+                                <td>
+                                    @if (item.Trade != null)
+                                    {
+                                        <a asp-controller="Trade" asp-action="Details" asp-route-id="@item.Trade.Id"> @Html.DisplayFor(modelItem => item.Trade.Id)</a>
+                                    }
+                                </td>
+                                <td>
+                                    @{
+                                        string currencyTotalAmount = item.TotalAmount.ToString("C2");
+                                    }
+                                    @Html.DisplayFor(modelItem => currencyTotalAmount)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reconciled)
+                                </td>
+                                <td>
+                                    <span class="d-inline-block text-truncate" style="max-width: 50px;">
+                                        @Html.DisplayFor(modelItem => item.Comment)
+                                    </span>
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.TransactionType.ToString().ToUpper() == "DEBIT")
+                                        {
+                                            balance += item.TotalAmount;
+                                        }
+                                        else if (item.TransactionType.ToString().ToUpper() == "CREDIT")
+                                        {
+                                            balance -= item.TotalAmount;
+                                        }
+                                        else if (item.TransactionType.ToString().ToUpper() == "TRANSFER" && item.FromAccount.ToString().ToUpper() == "BANK" && item.ToAccount.ToString().ToUpper() == "BROKER")
+                                        {
+                                            balance += item.TotalAmount;
+                                        }
+                                        else if (item.TransactionType.ToString().ToUpper() == "TRANSFER" && item.FromAccount.ToString().ToUpper() == "BROKER" && item.ToAccount.ToString().ToUpper() == "BANK")
+                                        {
+                                            balance -= item.TotalAmount;
+                                        }
+                                        string strBalance = balance.ToString("C2");
+                                    }
+                                    @Html.DisplayFor(modelItem => strBalance)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-right">
+    <p>
+        <a asp-action="Create" class="btn btn-outline-info btn-lg">New Transaction</a>
+    </p>
+</div>

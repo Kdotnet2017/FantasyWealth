@@ -1,0 +1,106 @@
+@model FantasyWealth.Models.Wealth
+@using FantasyWealth.Utilities
+@inject TradeHelperService tradeHelpService
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="text-center">
+    <h4>Wealth</h4>
+    <hr />
+    <div class="row">
+    <div class="col-sm-6">
+    <dl class="dl-horizontal">
+         <dt>
+            @Html.DisplayNameFor(model => model.Symbol)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Symbol.Symbol)
+        </dd>
+         <dt>
+            @Html.DisplayNameFor(model => model.Symbol.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Symbol.Name)
+        </dd>
+        <dt>
+           Share @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedDate)
+        </dd>
+    </dl>
+</div>
+<div class="col-sm-6">
+        <dt>
+            Average Purchased Price/Share
+        </dt>
+        <dd>
+            @{
+               int id=Model.SymbolId;
+               decimal avgPurchasedPrice=await tradeHelpService.apiAveragePurchasePrice(id);
+            }
+           $ @Html.DisplayFor(modelItem => avgPurchasedPrice)
+        </dd>
+        <dt>
+            Realtime Price/Share
+        </dt>
+        <dd>
+             @{
+                string price= await iexTrading.getSymbolPriceAsync(Model.Symbol.Symbol);
+               }
+             $ @Html.DisplayFor(modelItem => price)
+        </dd>
+        <dt>
+            Profit or Loss/Share
+        </dt>
+        <dd class="text-xl">
+            @{
+            string display="";
+            decimal purchased=avgPurchasedPrice;
+            decimal sell=0;
+            if(decimal.TryParse(price, out sell))
+            {
+                if(sell>purchased)
+                {
+                     display="↑";
+                }
+                else
+                {
+                    display="↓";
+                }
+            }
+            else
+            {
+                display="Error";
+            }
+            }
+            @Html.DisplayFor(modelItem => display)
+        </dd>
+        <dt>
+            Schedule to Buy or Sell
+        </dt>
+        <dd>
+            <a asp-controller="Schedule" asp-action="Index"  class="btn btn-outline-info btn-lg">Schedule</a>
+        </dd>
+</div>
+</div>
+<div>
+    <a asp-controller="Dashboard" asp-action="Index">Back to Dashboard</a>
+</div>
+</div>

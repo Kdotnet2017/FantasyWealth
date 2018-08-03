@@ -1,29 +1,36 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using FantasyWealth.Areas.Identity.Data;
+using System.Collections.Generic;
 
 namespace FantasyWealth.Models
 {
     public class Trade
     {
+        public Trade()
+        {
+            this.CreationDate = DateTime.Now;
+        }
         [Key]
         public int Id { get; set; }
-         [Required]
         [StringLength(450)]
         public string UserId { get; set; }
-         [Required]
-        [StringLength(15)]
-        public string TickerSymbol { get; set; }
+        [Required]
+        [Display(Name="Ticker Symbol")]
+        public int SymbolId { get; set; }
+        [Display(Name="Share")]
         public int Quantity { get; set; }
         public decimal Price { get; set; }
-        public int TradeType { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public TradeAction Action { get; set; }
+        [Display(Name="Date")]
+        public DateTime CreationDate { get; set; }
         public string Comment { get; set; }
-        public int Status { get; set; }
+        public TradeStatus Status { get; set; }
         public string Reserved { get; set; }
         //relationships  between the following entities
         public FantasyWealthUser User { get; set; }
-        public Transaction Transaction { get; set; }
+        public List<Transaction> Transactions { get; set; }
+         public TickerSymbol Symbol  { get; set; }
 
     }
 }

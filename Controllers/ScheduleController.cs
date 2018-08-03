@@ -2,10 +2,10 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace FantasyWealth.Models
+namespace FantasyWealth.Controllers
 {
     [Authorize]
-    public class ScheduleController: Controller
+    public class ScheduleController : Controller
     {
         public IActionResult Index()
         {

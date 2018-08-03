@@ -1,0 +1,92 @@
+@model FantasyWealth.Models.Trade
+
+@{
+    ViewData["Title"] = "Trade Details";
+}
+<div >
+<h2>Trade: # @Model.Id Details</h2>
+
+<div>
+    <hr />
+    <table class="table table-bordered table-dark">
+    <dl >
+        <div class="row">
+        <div class="col-sm-6">
+          <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.Symbol):
+        </dt>
+        <dd class="d-inline p-3 bg-primary text-white">
+            @Html.DisplayFor(model => model.Symbol.Symbol)
+        </dd>
+        <br><br><br>
+         <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.Symbol.Name):
+        </dt>
+         <dd class="d-inline p-3 bg-primary text-white">
+            @Html.DisplayFor(model => model.Symbol.Name)
+        </dd>
+        <br><br><br>
+        <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.Quantity):
+        </dt>
+         <dd class="d-inline p-3 bg-primary text-white">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <br><br><br>
+        <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.Price):
+        </dt>
+         <dd class="d-inline p-3 bg-primary text-white">
+           $ @Html.DisplayFor(model => model.Price)
+        </dd>
+        <br><br><br>
+        </div>
+        <div class="col-sm-6">
+        <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.Action):
+        </dt>
+         <dd class="d-inline p-3 bg-primary text-white">
+            @Html.DisplayFor(model => model.Action)
+        </dd>
+        <br><br><br>
+        
+        <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.CreationDate):
+        </dt>
+         <dd class="d-inline p-3 bg-primary text-white">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+        <br><br><br>
+        <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.Comment):
+        </dt>
+        @{
+            string comment=Model.Comment;
+            if(!string.IsNullOrWhiteSpace(comment))
+            {
+         <dd class="d-inline p-3 bg-primary text-white">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+            }
+            else
+            {
+                <dd></dd>
+            }
+        }
+        <br><br><br>
+        <dt class="d-inline p-1 bg-dark text-white">
+            @Html.DisplayNameFor(model => model.Status):
+        </dt>
+         <dd class="d-inline p-3 bg-primary text-white">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+       </div>
+      </div>  
+      
+    </dl>
+    </table>
+</div>
+<div>
+    <a asp-controller="Dashboard" asp-action="Index">Back to Dashboard</a>
+</div>
+</div>

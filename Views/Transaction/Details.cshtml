@@ -1,0 +1,88 @@
+@model FantasyWealth.Models.Transaction
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+<div class="text-center">
+    <h4>Transaction</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TransactionType)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TransactionType)
+            </dd>
+        </div>
+        <div class="col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreationDate)
+            </dd>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.Trade)#
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Trade.Id)
+            </dd>
+
+        </div>
+        <div class="col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </dt>
+            <dd>
+                $ @Html.DisplayFor(model => model.TotalAmount)
+            </dd>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.Comment)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Comment)
+            </dd>
+        </div>
+        <div class="col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.FromAccount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FromAccount)
+            </dd>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.Reconciled)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Reconciled)
+            </dd>
+        </div>
+        <div class="col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.ToAccount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ToAccount)
+            </dd>
+        </div>
+    </div>
+    <div>
+        <a asp-controller="Dashboard" asp-action="Index">Back to Dashboard</a>
+    </div>
+</div>

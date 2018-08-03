@@ -53,8 +53,8 @@ namespace FantasyWealth.Areas.Identity.Pages.Account.Manage
             IsMachineRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user);
             RecoveryCodesLeft = await _userManager.CountRecoveryCodesAsync(user);
 
-           // return Page();
-           return RedirectToAction("Index","Home");
+            // return Page();
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> OnPost()

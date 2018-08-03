@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using FantasyWealth.Utilities;
 
 namespace FantasyWealth.Areas.Identity.Pages.Account
 {
@@ -20,17 +21,19 @@ namespace FantasyWealth.Areas.Identity.Pages.Account
         private readonly UserManager<FantasyWealthUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
+        private readonly TradeHelperService _tradeHelper;
         public RegisterModel(
             UserManager<FantasyWealthUser> userManager,
             SignInManager<FantasyWealthUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            TradeHelperService tradeHelper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _tradeHelper = tradeHelper;
         }
 
         [BindProperty]
@@ -84,11 +87,26 @@ namespace FantasyWealth.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
+                // getting a new account initial balance from appsettings.json
+                decimal balance = 0;
+                if (decimal.TryParse(TradeHelperService.readConfigurationSetting("InitialFund"), out balance))
+                { }
 
-                var user = new FantasyWealthUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName,RegistrationDate=DateTime.Now,CashBalanceAmount=10000 };
+                var user = new FantasyWealthUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    RegistrationDate = DateTime.Now,
+                    CashBalanceAmount = balance
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    // creating transaction for a new account
+                    await _tradeHelper.initiateFund(balance, user.Id);  // creating transaction for a new account
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

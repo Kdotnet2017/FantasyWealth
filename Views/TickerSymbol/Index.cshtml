@@ -1,0 +1,21 @@
+@{ 
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Page";
+}
+<h2><span class="d-block p-2 bg-primary text-white">Ticker Symbol Admin Page:</span></h2>
+
+<div>
+    <div class="row">
+        <div class="col-md-2">
+           <ul class="nav flex-column nav-pills white">
+    <li  class="nav-link  "><a class="nav-item" href="/TickerSymbol/Create" >Create</a></li>
+    <li class="nav-link"><a class="nav-item" href="/TickerSymbol/Update" >Update</a></li>
+    
+    </ul>
+        </div>
+        <div class="col-md-10">
+            <h1>@ViewData["message"]</h1>
+        </div>
+    </div>
+</div>
+

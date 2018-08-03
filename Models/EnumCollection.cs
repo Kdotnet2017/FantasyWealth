@@ -1,23 +1,28 @@
 using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace FantasyWealth.Models
 {
       public enum TransactionType{
         Transfer,
-        Deposit,
-        Credit,
         Debit,
-        Withdraw
+        Credit
     }
-    public enum TradeType{
+    public enum TradeAction{
         Sell,
         Buy
     }
-    public enum Status{
+    public enum TradeStatus{
         Pending,
         Processing,
         Approved,
         Cancelled,
         Disabled
+    }
+      public enum Account
+    {
+        Bank,
+        Broker,
     }
 }

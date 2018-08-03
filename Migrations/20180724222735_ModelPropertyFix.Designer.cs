@@ -4,14 +4,16 @@ using FantasyWealth.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FantasyWealth.Migrations
 {
     [DbContext(typeof(FantasyWealthIdentityDbContext))]
-    partial class FantasyWealthIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180724222735_ModelPropertyFix")]
+    partial class ModelPropertyFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +165,7 @@ namespace FantasyWealth.Migrations
 
                     b.Property<int?>("TradeId");
 
-                    b.Property<int>("TransactionType");
+                    b.Property<int>("TransType");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -171,7 +173,9 @@ namespace FantasyWealth.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TradeId");
+                    b.HasIndex("TradeId")
+                        .IsUnique()
+                        .HasFilter("[TradeId] IS NOT NULL");
 
                     b.HasIndex("UserId");
 
@@ -184,7 +188,7 @@ namespace FantasyWealth.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreattionDate");
 
                     b.Property<int>("Quantity");
 
@@ -331,8 +335,8 @@ namespace FantasyWealth.Migrations
             modelBuilder.Entity("FantasyWealth.Models.Transaction", b =>
                 {
                     b.HasOne("FantasyWealth.Models.Trade", "Trade")
-                        .WithMany("Transactions")
-                        .HasForeignKey("TradeId");
+                        .WithOne("Transaction")
+                        .HasForeignKey("FantasyWealth.Models.Transaction", "TradeId");
 
                     b.HasOne("FantasyWealth.Areas.Identity.Data.FantasyWealthUser", "User")
                         .WithMany("Transactions")
