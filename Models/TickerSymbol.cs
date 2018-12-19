@@ -22,5 +22,6 @@ namespace FantasyWealth.Models
         public DateTime UpdatedDate{get;set;}
         public List<Wealth> Wealths { get; set; }
         public List<Trade> Trades { get; set; }
+        public List<Offer> Offers { get; set; }
     }
 }

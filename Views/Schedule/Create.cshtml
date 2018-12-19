@@ -1,0 +1,62 @@
+@model FantasyWealth.Models.Offer
+
+@{
+    ViewData["Title"] = "Create Schedule";
+}
+
+<h2>Create Offer</h2>
+
+<h4>Offer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="SymbolId" class="control-label"></label>
+                <select asp-for="SymbolId" class ="form-control" asp-items="ViewBag.SymbolId">
+                     <option selected="selected" value="Select">Please select</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentPrice" class="control-label"></label>
+                <input asp-for="CurrentPrice" class="form-control" readonly="readonly" />
+                <span asp-validation-for="CurrentPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfferPrice" class="control-label"></label>
+                <input asp-for="OfferPrice" class="form-control" />
+                <span asp-validation-for="OfferPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Action" class="control-label"></label>
+                <select asp-for="Action" class="form-control" asp-items="Html.GetEnumSelectList<TradeAction>()">
+                      <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Action" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpirationDate" class="control-label"></label>
+                <input asp-for="ExpirationDate" class="form-control" />
+                <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Expired" /> @Html.DisplayNameFor(model => model.Expired)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

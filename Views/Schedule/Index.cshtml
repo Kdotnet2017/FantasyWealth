@@ -1,8 +1,96 @@
 <h5>Welcome to Schedule:</h5>
-<h3>Coming Soon!</h3>
+
 <p>
-    How to set a sell price or a buy price? In order to place such a trade follow ...
+    <a asp-action="Create">Create New</a>
 </p>
 <p>
-    Before placing the trade, we will send you a text message to ...
+   
 </p>
+
+@model IEnumerable<FantasyWealth.Models.Offer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.Symbol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Action)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpirationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expired)
+            </th>
+           
+          
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Symbol.Symbol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Action)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            @{
+                bool xxx=item.Expired;
+            }
+            <td>
+                <div class="form-group">
+                <div class="checkbox">
+                     <label>
+                <input type="checkbox" value="" />
+                </label>
+                </div>
+                </div>  
+              <!--  @Html.DisplayFor(modelItem => item.Expired) -->
+            </td>
+           
+            
+           
+        </tr>
+}
+    </tbody>
+</table>

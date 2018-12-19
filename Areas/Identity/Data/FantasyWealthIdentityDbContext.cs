@@ -20,6 +20,7 @@ namespace FantasyWealth.Areas.Identity.Data
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Trade> Trades { get; set; }
         public DbSet<TickerSymbol> TickerSymbols { get; set; }
+        public DbSet<Offer> Offers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -42,6 +43,10 @@ namespace FantasyWealth.Areas.Identity.Data
             .IsRequired(true);
             builder.Entity<Wealth>().Property(Wealth => Wealth.UserId)
             .IsRequired(true);
+            builder.Entity<Offer>().Property(Offer => Offer.CurrentPrice)
+            .HasColumnType("decimal(18,2)");
+            builder.Entity<Offer>().Property(Offer => Offer.OfferPrice)
+            .HasColumnType("decimal(18,2)");
 
         }
     }

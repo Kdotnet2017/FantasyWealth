@@ -14,7 +14,8 @@ using FantasyWealth.Utilities;
 
 namespace FantasyWealth.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+   // [AllowAnonymous]
+   [Authorize(Roles = "Admin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<FantasyWealthUser> _signInManager;

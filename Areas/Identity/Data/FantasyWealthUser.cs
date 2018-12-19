@@ -28,5 +28,6 @@ namespace FantasyWealth.Areas.Identity.Data
         public List<Transaction> Transactions { get; set; }
         public List<Trade> Trades { get; set; }
         public List<Wealth> Wealths { get; set; }
+        public List<Offer> Offers { get; set; }
     }
 }
